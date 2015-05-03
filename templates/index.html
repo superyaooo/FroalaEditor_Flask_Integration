@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>text editor try</title>
+
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- text editor -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/froala_editor.min.css" rel="stylesheet">
+    <link href="../static/css/froala_style.min.css" rel="stylesheet">
+    
+    
+    
+  </head>
+    
+  <body>
+    <div class="container">
+        <h1>Welcome!</h1>  
+
+        <!-- add a post -->
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <br>
+                <h3>Add a Post!</h3>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="control-label"><h4>Title:</h4></label>
+                        <input class="form-control" name="title">
+                    </div>
+
+                    <div class="form-goup">
+                        <label class="control-label"><h4>Content:</h4></label>
+                        <textarea class="form-control" id="edit" name="content"> </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <button type="submit" class="btn btn-sm btn-success" class="form-control">Submit</button>
+
+                    </div>
+
+                </form>
+            
+
+            </div>
+
+            <!-- show posts -->
+            <br>
+            <div class=" col-md-6 pull-right">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Current Posts
+                    </div>
+                    <div class="panel-body">
+                        {% for post in posts %}
+                            <h4>{{ post.title }}</h4>
+
+    
+                            <p>{{ post.content|safe }}</p>
+
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+          </div>
+        </div>
+
+    </div>
+
+
+      
+      
+      
+      
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/js/bootstrap.min.js"></script>
+      
+    <!-- text editor -->
+    <script src="../static/js/froala_editor.min.js"></script>
+    <script src="../static/js/plugins/media_manager.min.js"></script>
+    <script src="../static/js/plugins/lists.min.js"></script>
+    <script src="../static/js/plugins/inline_styles.min.js"></script>
+    <script src="../static/js/plugins/tables.min.js"></script>
+    
+    <!-- Include IE8 JS. -->
+      <!--[if lt IE 9]>
+          <script src="../static/js/froala_editor_ie8.min.js"></script>
+      <![endif]-->
+      
+    <script>
+      $(function() {
+        $('textarea#edit').editable({
+        
+            inlineMode: false,
+              // Set the image upload URL.
+            imageUploadURL: '/upload_image',
+
+            imageUploadParams: {
+                id: 'my_editor'
+          }
+        })
+      });
+    </script>
+  
+      
+  </body>
+</html>
